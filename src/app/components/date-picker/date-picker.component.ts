@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -9,5 +9,13 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './date-picker.component.css'
 })
 export class DatePickerComponent {
+  @Output() abrirCalendario = new EventEmitter<'entrada' | 'salida'>();
 
+  abrirEntrada() {
+    this.abrirCalendario.emit('entrada');
+  }
+  
+  abrirSalida() {
+    this.abrirCalendario.emit('salida');
+  }  
 }

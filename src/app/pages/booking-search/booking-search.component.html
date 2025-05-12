@@ -3,15 +3,23 @@
 <div class="booking-search-wrapper">
   <h2 class="title">¡Reserva ya tu estadía!</h2>
   <div class="booking-panel">
-    <app-date-picker></app-date-picker>
+    <div class="date-controls" #dateControls>
+      <app-date-picker
+        (abrirCalendario)="mostrarCalendario($event)"
+      ></app-date-picker>
+    </div>
+
     <div class="guest-room-wrapper" #roomWrapper>
       <app-guest-selector
         (showRoomSelector)="mostrarRoomSelector()"
         [isActive]="roomSelectorVisible"
-      >
-      </app-guest-selector>
+      ></app-guest-selector>
 
       <app-room-selector *ngIf="roomSelectorVisible"></app-room-selector>
     </div>
   </div>
+</div>
+
+<div class="calendar-position-wrapper" *ngIf="calendarVisible" [ngStyle]="calendarPositionStyle">
+  <app-calendar-container></app-calendar-container>
 </div>

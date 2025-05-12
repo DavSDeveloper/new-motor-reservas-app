@@ -42,7 +42,7 @@
 }
 
 .btn:hover {
-  background-color: #FFFFFF;
+  background-color: #f4c430;
   color: #000000;
 }
 
@@ -64,4 +64,32 @@
   justify-content: center;
   color: hsla(0, 0%, 100%, .5);
   z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .date-picker-container {
+    width: 100%;
+  }
+
+  .date-controls {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: flex-start;
+    padding-left: 1rem;
+    height: 3.25rem;
+  }
+
+  .btn mat-icon {
+    margin-left: 0;
+    margin-right: 0.75rem;
+  }
+
+  .arrow-separator {
+    display: none;
+  }
 }

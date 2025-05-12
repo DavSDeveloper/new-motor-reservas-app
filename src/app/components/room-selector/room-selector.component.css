@@ -102,18 +102,20 @@
   border: none;
   font-size: 20px;
   font-weight: 800;
-  background-color: #1a1a1a;
-  color: #fff;
+  background-color: #f4c430;
+  color: #1a1a1a;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .counter button:hover {
   background-color: #494949;
+  color: #fff;
 }
 
 .counter button:disabled {
   background-color: #ccc;
+  color: #1a1a1a;
   cursor: default;
 }
 
@@ -166,7 +168,7 @@
 }
 
 input:checked + .slider {
-  background-color: #000;
+  background-color: #f4c430;
 }
 
 input:checked + .slider:before {
@@ -208,13 +210,14 @@ input:checked + .slider:before {
 }
 
 .actions button.apply {
-  background-color: #1a1a1a;
-  color: white;
+  background-color: #f4c430;
+  color: #1a1a1a;
   transition: background-color 0.3s ease;
 }
 
 .actions button.apply:hover {
   background-color: #494949;
+  color: #fff;
 }
 
 .actions button:active {
@@ -250,5 +253,11 @@ input:checked + .slider:before {
     height: 0;
     margin: 0;
     padding: 0;
+  }
+}
+
+@media (max-width: 834px) {
+  .label small {
+    margin-right: 1.5rem;
   }
 }
