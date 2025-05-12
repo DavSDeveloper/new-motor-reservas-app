@@ -1,0 +1,41 @@
+.booking-search-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #303030;
+  padding-bottom: 1.5rem;
+}
+
+.title {
+  height: 2.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 1.5rem;
+  color: #fff;
+}
+
+.booking-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5.125rem;
+  z-index: 2;
+}
+
+.guest-room-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.guest-room-wrapper app-room-selector {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  margin-top: 8px;
+}
+

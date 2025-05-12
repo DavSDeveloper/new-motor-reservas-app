@@ -1,0 +1,46 @@
+<div class="room-selector">
+  <div *ngFor="let room of rooms; let i = index" class="room-card">
+    <div class="room-header">
+      <span>Habitación {{ i + 1 }}</span>
+      <button *ngIf="rooms.length > 1" (click)="removeRoom(i)">✕</button>
+    </div>
+
+    <!-- Adultos -->
+    <div class="section">
+      <div class="label">
+        <strong>Adultos</strong>
+        <small>y niños a partir de 14 años</small>
+      </div>
+      <div class="counter">
+        <button (click)="decrementAdults(i)" [disabled]="room.adults === 1" [ngClass]="{ 'animate': counterAnimationKeys['adults-' + i] }">−</button>
+        <span>{{ room.adults }}</span>
+        <button (click)="incrementAdults(i)" [ngClass]="{ 'animate': counterAnimationKeys['adults-' + i] }">+</button>
+      </div>
+    </div>
+
+    <!-- Switch Niños -->
+    <div class="section">
+      <div class="label"><strong>Niños</strong></div>
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="room.hasChildren" (ngModelChange)="onChildrenToggle(i)">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Contador Niños -->
+    <div *ngIf="room.hasChildren" class="section">
+      <div class="label">0-13 años</div>
+      <div class="counter">
+        <button (click)="decrementChildren(i)" [disabled]="room.children === 0">−</button>
+        <span>{{ room.children }}</span>
+        <button (click)="incrementChildren(i)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="actions">
+    <button (click)="addRoom()">AGREGAR HABITACIÓN</button>
+    <button class="apply" (click)="apply()">APLICAR</button>
+  </div>
+</div>

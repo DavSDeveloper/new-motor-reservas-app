@@ -1,0 +1,67 @@
+.date-picker-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.date-controls {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 0.4rem;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  background-color: #454545;
+  color: white;
+  width: 13.75rem;
+  height: 3.5rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  line-height: 1;
+  z-index: 1;
+}
+
+.left-btn {
+  border-radius: 4px;
+}
+
+.right-btn {
+  border-radius: 4px;
+}
+
+.btn mat-icon {
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.btn:hover {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+.right-btn span {
+  margin-left: 1.5rem;
+}
+
+.arrow-separator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #303030;
+  border-radius: 50%;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsla(0, 0%, 100%, .5);
+  z-index: 2;
+}
