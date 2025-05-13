@@ -16,7 +16,6 @@
   margin-bottom: 1rem;
 }
 
-
 .booking-panel {
   display: flex;
   align-items: center;
@@ -25,32 +24,21 @@
   z-index: 2;
 }
 
-.guest-room-wrapper {
+.guest-room-wrapper,
+.date-controls {
   position: relative;
   display: inline-block;
   width: 100%;
 }
 
-.guest-room-wrapper app-room-selector {
+.guest-room-wrapper app-room-selector,
+.date-controls app-calendar-container {
   position: absolute;
   top: 100%;
-  left: 0;
-  z-index: 100;
   margin-top: 8px;
-}
-
-.calendar-position-wrapper {
-  position: fixed; /* Fijamos el calendario en la pantalla */
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%); /* Esto asegura que esté centrado en el eje horizontal */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; /* Para asegurarse de que esté encima de otros elementos */
-  width: 100%; /* Asegura que ocupe todo el ancho posible sin desbordarse */
-  padding: 0 16px; /* Algo de relleno lateral para evitar que se toque los bordes */
-  margin-top: 8px; /* Espacio entre el calendario y el resto del contenido */
+  z-index: 100;
+  min-width: 250px;
+  max-width: 90vw;
 }
 
 @media (max-width: 834px) {
@@ -68,13 +56,15 @@
     gap: 1rem;
   }
 
-  .guest-room-wrapper {
+  .guest-room-wrapper, 
+  .date-controls {
     display: flex;
     justify-content: center;
     width: 100%;
   }
 
-  .guest-room-wrapper app-room-selector {
+  .guest-room-wrapper app-room-selector,
+  .date-controls app-calendar-container {
     left: 25%;
   }
 }
@@ -94,17 +84,18 @@
     gap: 1rem;
   }
 
-  .guest-room-wrapper {
+  .guest-room-wrapper,
+  .date-controls {
     position: relative;
     display: inline-block;
     width: 100%;
   }
 
-  .guest-room-wrapper app-room-selector {
+  .guest-room-wrapper app-room-selector,
+  .date-controls app-calendar-container {
     left: 25%;
   }
 }
-
 
 @media (max-width: 440px) {
   .title {
@@ -121,18 +112,15 @@
     gap: 1rem;
   }
 
-  .guest-room-wrapper {
+  .guest-room-wrapper,
+  .date-controls {
     position: relative;
     display: inline-block;
     width: 100%;
   }
 
-  .guest-room-wrapper app-room-selector {
-    left: 0;
-  }
-
-  .calendar-position-wrapper {
+  .guest-room-wrapper app-room-selector,
+  .date-controls app-calendar-container {
     left: 0;
   }
 }
-

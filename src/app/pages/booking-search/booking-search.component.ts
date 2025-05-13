@@ -5,6 +5,7 @@ import { TopNavbarComponent } from '../../components/top-navbar/top-navbar.compo
 import { RoomSelectorComponent } from '../../components/room-selector/room-selector.component';
 import { CommonModule } from '@angular/common';
 import { CalendarContainerComponent } from '../../components/calendar-container/calendar-container.component';
+import { Room } from '../../models/room.model';
 
 @Component({
   selector: 'app-booking-search',
@@ -21,50 +22,72 @@ import { CalendarContainerComponent } from '../../components/calendar-container/
   styleUrl: './booking-search.component.css',
 })
 export class BookingSearchComponent {
-  calendarVisible = false;
+  isCalendarVisible = false;
+  fechaEntrada: Date | null = null;
+  fechaSalida: Date | null = null;
+  tipoActivo: 'entrada' | 'salida' | null = null;
   roomSelectorVisible = false;
-
-  tipoCalendario: 'entrada' | 'salida' | null = null;
+  resumenHabitaciones = {
+    totalHabitaciones: 0,
+    totalAdultos: 0,
+    totalNinos: 0,
+  };
+  rooms: Room[] = [];
 
   @ViewChild('dateControls', { read: ElementRef }) dateControls!: ElementRef;
   @ViewChild('roomWrapper') roomWrapper!: ElementRef;
 
-  calendarPositionStyle = {
-    top: '0px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    maxWidth: '100%'
-  };
-  
-
   mostrarCalendario(tipo: 'entrada' | 'salida') {
-    this.calendarVisible = true;
-    this.tipoCalendario = tipo;
-  
-    setTimeout(() => {
-      const rect = this.dateControls.nativeElement.getBoundingClientRect();
-      this.calendarPositionStyle = {
-        top: `${rect.bottom + window.scrollY}px`,
-        left: `${rect.left + rect.width / 2}px`,
-        transform: 'translateX(-50%)',
-        maxWidth: '100%'
-      };
-    });
+    this.isCalendarVisible =
+      !this.isCalendarVisible || this.tipoActivo !== tipo;
+    this.tipoActivo = tipo;
   }
+
   mostrarRoomSelector() {
-    this.roomSelectorVisible = !this.roomSelectorVisible;
+    if (!this.roomSelectorVisible) {
+      this.isCalendarVisible = false;
+      this.roomSelectorVisible = true;
+    } else {
+      this.roomSelectorVisible = false;
+    }
+  }
+
+  actualizarResumen(rooms: Room[]) {
+    this.resumenHabitaciones.totalHabitaciones = rooms.length;
+    this.resumenHabitaciones.totalAdultos = rooms.reduce(
+      (sum, r) => sum + r.adults,
+      0
+    );
+    this.resumenHabitaciones.totalNinos = rooms.reduce(
+      (sum, r) => sum + r.children,
+      0
+    );
+    this.rooms = rooms;
+  }
+
+  onFechaSeleccionada(fecha: Date) {
+    if (this.tipoActivo === 'entrada') {
+      this.fechaEntrada = fecha;
+    } else if (this.tipoActivo === 'salida') {
+      this.fechaSalida = fecha;
+    }
+    this.isCalendarVisible = false;
   }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
+
+    if (this.roomWrapper?.nativeElement.contains(target)) {
+      return;
+    }
+
     if (!this.roomWrapper?.nativeElement.contains(target)) {
       this.roomSelectorVisible = false;
     }
 
-    const isInsideDateControls = target.closest('.date-controls');
-    if (!isInsideDateControls) {
-      this.calendarVisible = false;
+    if (!this.dateControls?.nativeElement.contains(target)) {
+      this.isCalendarVisible = false;
     }
   }
 }

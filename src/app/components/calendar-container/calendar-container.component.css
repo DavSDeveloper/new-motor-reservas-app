@@ -3,8 +3,8 @@
   background: #fff;
   border-radius: 16px;
   padding: 24px;
-  max-width: 720px; /* Establece un máximo para pantallas grandes */
-  width: 100%;
+  max-width: 100%; 
+  width: 685px;
   transition: all 0.3s ease;
   box-shadow: 14px 14px 20px 0 rgba(20, 20, 20, 0.3);
 }
@@ -52,8 +52,8 @@
 }
 
 .calendar-month {
-  width: 48%; /* Asegura que haya espacio suficiente para dos meses al lado */
-  margin-bottom: 16px; /* Espaciado entre los meses */
+  width: 48%; 
+  margin-bottom: 16px;
   display: inline-block;
 }
 
@@ -81,23 +81,35 @@
 }
 
 .calendar-day:hover {
-  background-color: #2e2e2e;
+  background-color: #1a1a1a;
   color: #ffd700;
   transform: scale(1.07);
   font-weight: 600;
   box-shadow: 0 2px 6px rgba(244, 196, 48, 0.4);
 }
 
-.outside {
-  color: #bbb;
-}
-
-.selected {
-  background-color: #f4c430;
+.calendar-day.selected {
+  background-color: #ffd700;
   color: #1a1a1a;
   font-weight: bold;
   box-shadow: 0 0 6px rgba(244, 196, 48, 0.5), 0 0 0 2px #fff;
   border-radius: 10px;
+}
+
+.calendar-day.in-range {
+  background-color: rgba(244, 196, 48, 0.5);
+  color: #1a1a1a;
+}
+
+.calendar-day.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+  background-color: #f0f0f0;
+  color: #999;
+}
+
+.outside {
+  color: #bbb;
 }
 
 @keyframes fadeSlideIn {
@@ -135,12 +147,12 @@
   }
 
   .calendar-month {
-    width: 100%; /* Solo un mes por columna */
-    margin-bottom: 0; /* Sin margen entre los meses */
+    width: 100%; 
+    margin-bottom: 0; 
   }
 
   .calendar-month.second-month {
-    display: none; /* Oculta el segundo mes en pantallas más pequeñas */
+    display: none; 
   }
 
   .month-year {
@@ -160,8 +172,8 @@
 @media (max-width: 440px) {
   .calendar-wrapper {
     padding: 16px;
-    width: 100%; /* Asegura que el calendario no ocupe todo el ancho */
-    max-width: 360px; /* Establece un ancho máximo para pantallas pequeñas */
+    width: 100%; 
+    max-width: 360px; 
   }
 
   .calendar-body {
@@ -169,11 +181,11 @@
   }
 
   .calendar-month {
-    width: 100%; /* Solo un mes por columna */
+    width: 100%; 
   }
 
   .calendar-month.second-month {
-    display: none; /* Oculta la segunda columna de meses en dispositivos pequeños */
+    display: none; 
   }
 
   .month-year {
@@ -182,6 +194,13 @@
   }
 
   .month-label:last-child {
-    display: none; /* Oculta la segunda etiqueta del mes */
+    display: none;
+  }
+}
+
+@media (max-width: 320px) {
+  .calendar-wrapper {
+    padding: 16px;
+    width: 75%; 
   }
 }

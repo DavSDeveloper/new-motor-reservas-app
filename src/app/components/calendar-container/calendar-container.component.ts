@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-calendar-container',
@@ -9,6 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './calendar-container.component.css'
 })
 export class CalendarContainerComponent {
+  @Input() fechaEntrada: Date | null = null;
+  @Input() fechaSalida: Date | null = null;
+  @Input() modo: 'entrada' | 'salida' = 'entrada';
+  @Output() fechaSeleccionada = new EventEmitter<Date>();
+
   currentDate = new Date();
   selectedDate: Date | null = null;
   dayNames = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa', 'Do'];
@@ -65,10 +70,48 @@ export class CalendarContainerComponent {
 
   selectDate(date: Date) {
     this.selectedDate = date;
-    console.log('Fecha seleccionada:', date);
+    this.fechaSeleccionada.emit(date);
   }
 
   isSelected(date: Date): boolean {
-    return this.selectedDate?.toDateString() === date.toDateString();
+    return (
+      this.fechaEntrada?.toDateString() === date.toDateString() ||
+      this.fechaSalida?.toDateString() === date.toDateString()
+    );
   }
+
+  isInRange(date: Date): boolean {
+    if (this.fechaEntrada && this.fechaSalida) {
+      return (
+        date > this.fechaEntrada && date < this.fechaSalida
+      );
+    }
+    return false;
+  }
+
+  isStart(date: Date): boolean {
+    return this.fechaEntrada?.toDateString() === date.toDateString();
+  }
+  
+  isEnd(date: Date): boolean {
+    return this.fechaSalida?.toDateString() === date.toDateString();
+  }
+
+  isDisabled(date: Date): boolean {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+  
+    const entrada = this.fechaEntrada ? new Date(this.fechaEntrada) : null;
+    if (entrada) entrada.setHours(0, 0, 0, 0);
+  
+    if (this.modo === 'entrada') {
+      return date < today;
+    }
+  
+    if (this.modo === 'salida') {
+      return date <= today || (entrada ? date <= entrada : false);
+    }
+  
+    return false;
+  }  
 }

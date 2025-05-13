@@ -46,6 +46,11 @@
   color: #000000;
 }
 
+.btn.active {
+  background-color: #f4c430;
+  color: black;
+}
+
 .right-btn span {
   margin-left: 1.5rem;
 }

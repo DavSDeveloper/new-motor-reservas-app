@@ -6,20 +6,35 @@
     <div class="date-controls" #dateControls>
       <app-date-picker
         (abrirCalendario)="mostrarCalendario($event)"
+        [isActive]="isCalendarVisible"
+        [tipoActivo]="tipoActivo"
+        [fechaEntrada]="fechaEntrada"
+        [fechaSalida]="fechaSalida"
       ></app-date-picker>
+
+      <div *ngIf="isCalendarVisible">
+        <app-calendar-container
+          (fechaSeleccionada)="onFechaSeleccionada($event)"
+          [fechaEntrada]="fechaEntrada"
+          [fechaSalida]="fechaSalida"
+        ></app-calendar-container>
+      </div>
     </div>
 
-    <div class="guest-room-wrapper" #roomWrapper>
+    <div #roomWrapper class="guest-room-wrapper">
       <app-guest-selector
         (showRoomSelector)="mostrarRoomSelector()"
         [isActive]="roomSelectorVisible"
+        [resumen]="resumenHabitaciones"
       ></app-guest-selector>
 
-      <app-room-selector *ngIf="roomSelectorVisible"></app-room-selector>
+      <div class="room-selector-container" *ngIf="roomSelectorVisible">
+        <app-room-selector
+          (habitacionesAplicadas)="actualizarResumen($event)"
+          (habitacionesCambiadas)="actualizarResumen($event)"
+          [rooms]="rooms"
+        ></app-room-selector>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="calendar-position-wrapper" *ngIf="calendarVisible" [ngStyle]="calendarPositionStyle">
-  <app-calendar-container></app-calendar-container>
 </div>

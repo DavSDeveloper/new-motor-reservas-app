@@ -3,41 +3,56 @@
     <button type="button" class="nav-button" (click)="prevMonth()">←</button>
 
     <div class="month-year">
-      <span class="month-label">{{ getMonthName(currentDate) }} {{ currentDate.getFullYear() }}</span>
-      <span class="month-label">{{ getMonthName(nextMonthDate) }} {{ nextMonthDate.getFullYear() }}</span>
+      <span class="month-label"
+        >{{ getMonthName(currentDate) }} {{ currentDate.getFullYear() }}</span
+      >
+      <span class="month-label"
+        >{{ getMonthName(nextMonthDate) }}
+        {{ nextMonthDate.getFullYear() }}</span
+      >
     </div>
 
     <button type="button" class="nav-button" (click)="nextMonth()">→</button>
   </div>
 
   <div class="calendar-body">
-    <!-- Primer mes -->
     <div class="calendar-month">
       <div class="day-header">
         <div *ngFor="let d of dayNames">{{ d }}</div>
       </div>
       <div class="calendar-grid">
-        <div *ngFor="let day of getCalendarDays(currentDate)"
-             [class.outside]="!day.inMonth"
-             [class.selected]="isSelected(day.date)"
-             class="calendar-day"
-             (click)="selectDate(day.date)">
+        <div
+          *ngFor="let day of getCalendarDays(currentDate)"
+          [class.outside]="!day.inMonth"
+          [class.selected]="isSelected(day.date)"
+          [class.start]="isStart(day.date)"
+          [class.end]="isEnd(day.date)"
+          [class.in-range]="isInRange(day.date)"
+          [class.disabled]="isDisabled(day.date)"
+          class="calendar-day"
+          (click)="selectDate(day.date)"
+        >
           {{ day.date.getDate() }}
         </div>
       </div>
     </div>
 
-    <!-- Segundo mes (solo visible en pantallas grandes) -->
     <div class="calendar-month second-month">
       <div class="day-header">
         <div *ngFor="let d of dayNames">{{ d }}</div>
       </div>
       <div class="calendar-grid">
-        <div *ngFor="let day of getCalendarDays(nextMonthDate)"
-             [class.outside]="!day.inMonth"
-             [class.selected]="isSelected(day.date)"
-             class="calendar-day"
-             (click)="selectDate(day.date)">
+        <div
+          *ngFor="let day of getCalendarDays(nextMonthDate)"
+          [class.outside]="!day.inMonth"
+          [class.selected]="isSelected(day.date)"
+          [class.start]="isStart(day.date)"
+          [class.end]="isEnd(day.date)"
+          [class.in-range]="isInRange(day.date)"
+          [class.disabled]="isDisabled(day.date)"
+          class="calendar-day"
+          (click)="selectDate(day.date)"
+        >
           {{ day.date.getDate() }}
         </div>
       </div>

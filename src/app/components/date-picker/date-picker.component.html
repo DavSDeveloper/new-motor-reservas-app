@@ -1,12 +1,33 @@
 <div class="date-picker-container">
   <div class="date-controls">
-    <button class="btn left-btn" (click)="abrirEntrada()">
+    <!-- Fecha de llegada -->
+    <button
+      class="btn left-btn"
+      (click)="abrirEntrada()"
+      [class.active]="isActive && tipoActivo === 'entrada'"
+    >
       <mat-icon>calendar_today</mat-icon>
-      <span>Fecha de llegada</span>
+      <span>
+        Fecha de llegada
+        <small *ngIf="fechaEntrada">{{
+          fechaEntrada | date : "dd/MM/yyyy"
+        }}</small>
+      </span>
     </button>
-    <button class="btn right-btn" (click)="abrirSalida()">
-      <span>Fecha de salida</span>
+
+    <button
+      class="btn right-btn"
+      (click)="abrirSalida()"
+      [class.active]="isActive && tipoActivo === 'salida'"
+    >
+      <span>
+        Fecha de salida
+        <small *ngIf="fechaSalida">{{
+          fechaSalida | date : "dd/MM/yyyy"
+        }}</small>
+      </span>
     </button>
+
     <div class="arrow-separator">
       <mat-icon>chevron_right</mat-icon>
     </div>

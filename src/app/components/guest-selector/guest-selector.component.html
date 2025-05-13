@@ -1,6 +1,12 @@
 <div class="guest-selector">
   <button class="guest-btn" [class.active]="isActive" (click)="onClick()">
     <mat-icon>group</mat-icon>
-    <span>Clientes y habitaciones</span>
+    <span *ngIf="mostrarResumen; else placeholder">
+      {{ resumen.totalAdultos }} adulto{{ resumen.totalAdultos !== 1 ? 's' : '' }},
+      {{ resumen.totalNinos }} niño{{ resumen.totalNinos !== 1 ? 's' : '' }},
+      {{ resumen.totalHabitaciones }} {{ resumen.totalHabitaciones !== 1 ? 'habitaciones' : 'habitación' }}
+    </span>
+    <ng-template #placeholder>Clientes y habitaciones</ng-template>
+    
   </button>
 </div>
