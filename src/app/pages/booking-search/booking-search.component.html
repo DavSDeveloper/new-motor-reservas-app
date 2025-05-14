@@ -14,9 +14,12 @@
 
       <div *ngIf="isCalendarVisible">
         <app-calendar-container
+          *ngIf="isCalendarVisible && tipoActivo"
           (fechaSeleccionada)="onFechaSeleccionada($event)"
           [fechaEntrada]="fechaEntrada"
           [fechaSalida]="fechaSalida"
+          [minDate]="getMinDate()"
+          [modo]="tipoActivo"
         ></app-calendar-container>
       </div>
     </div>

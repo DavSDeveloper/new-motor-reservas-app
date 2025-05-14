@@ -108,6 +108,15 @@
   color: #999;
 }
 
+.calendar-day.selected.start.disabled {
+  background-color: #ffd700;
+  color: #1a1a1a;
+  font-weight: bold;
+  box-shadow: 0 0 6px rgba(244, 196, 48, 0.5), 0 0 0 2px #fff;
+  border-radius: 10px;
+  opacity: 1;
+}
+
 .outside {
   color: #bbb;
 }

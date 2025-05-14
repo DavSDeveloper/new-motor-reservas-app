@@ -55,6 +55,15 @@
   margin-left: 1.5rem;
 }
 
+button.btn.right-btn:disabled {
+  background-color: #f3f3f3;
+  color: #000000;
+  cursor: not-allowed;
+  border: 1px solid #dcdcdc;
+  opacity: 0.6;
+}
+
+
 .arrow-separator {
   position: absolute;
   top: 50%;

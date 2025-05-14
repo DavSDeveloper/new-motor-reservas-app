@@ -22,10 +22,16 @@ import { Room } from '../../models/room.model';
   styleUrl: './booking-search.component.css',
 })
 export class BookingSearchComponent {
+  showRoomSelector = false;
+
+  arrivalDate: Date | null = null;
+  departureDate: Date | null = null;
+
   isCalendarVisible = false;
   fechaEntrada: Date | null = null;
   fechaSalida: Date | null = null;
   tipoActivo: 'entrada' | 'salida' | null = null;
+
   roomSelectorVisible = false;
   resumenHabitaciones = {
     totalHabitaciones: 0,
@@ -36,6 +42,11 @@ export class BookingSearchComponent {
 
   @ViewChild('dateControls', { read: ElementRef }) dateControls!: ElementRef;
   @ViewChild('roomWrapper') roomWrapper!: ElementRef;
+
+  ngOnInit(): void {
+    this.isCalendarVisible = true;
+    this.tipoActivo = 'entrada';
+  }  
 
   mostrarCalendario(tipo: 'entrada' | 'salida') {
     this.isCalendarVisible =
@@ -68,11 +79,33 @@ export class BookingSearchComponent {
   onFechaSeleccionada(fecha: Date) {
     if (this.tipoActivo === 'entrada') {
       this.fechaEntrada = fecha;
+      this.tipoActivo = 'salida';
+      this.isCalendarVisible = true;
     } else if (this.tipoActivo === 'salida') {
       this.fechaSalida = fecha;
+      this.isCalendarVisible = false;
+      this.roomSelectorVisible = true;
     }
-    this.isCalendarVisible = false;
-  }
+  }  
+
+  getMinDate(): Date | null {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+  
+    if (this.tipoActivo === 'entrada') {
+      const minEntrada = new Date(today);
+      minEntrada.setDate(minEntrada.getDate() + 1);
+      return minEntrada;
+    }
+  
+    if (this.tipoActivo === 'salida' && this.fechaEntrada) {
+      const minSalida = new Date(this.fechaEntrada);
+      minSalida.setDate(minSalida.getDate() + 1);
+      return minSalida;
+    }
+  
+    return null;
+  }  
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {

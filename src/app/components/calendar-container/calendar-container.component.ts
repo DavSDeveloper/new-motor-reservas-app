@@ -11,7 +11,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class CalendarContainerComponent {
   @Input() fechaEntrada: Date | null = null;
   @Input() fechaSalida: Date | null = null;
-  @Input() modo: 'entrada' | 'salida' = 'entrada';
+  @Input() modo: 'entrada' | 'salida' | null = null;
+  @Input() minDate: Date | null = null;
   @Output() fechaSeleccionada = new EventEmitter<Date>();
 
   currentDate = new Date();
@@ -25,8 +26,8 @@ export class CalendarContainerComponent {
   }
 
   getMonthName(date: Date): string {
-    return date.toLocaleDateString('es-ES', { month: 'long' }).toUpperCase();
-  }
+    return date.toLocaleDateString('es-ES', { month: 'long' }).slice(0, 3).toUpperCase();
+  }  
 
   getCalendarDays(date: Date): { date: Date, inMonth: boolean }[] {
     const year = date.getFullYear();
@@ -98,20 +99,22 @@ export class CalendarContainerComponent {
   }
 
   isDisabled(date: Date): boolean {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const testDate = new Date(date);
+    testDate.setHours(0, 0, 0, 0);
   
-    const entrada = this.fechaEntrada ? new Date(this.fechaEntrada) : null;
-    if (entrada) entrada.setHours(0, 0, 0, 0);
+    const min = this.minDate ? new Date(this.minDate) : null;
+    if (min) min.setHours(0, 0, 0, 0);
   
-    if (this.modo === 'entrada') {
-      return date < today;
+    // Si estamos seleccionando la fecha de salida, deshabilitar la misma fecha de entrada
+    if (this.modo === 'salida' && this.fechaEntrada) {
+      const entrada = new Date(this.fechaEntrada);
+      entrada.setHours(0, 0, 0, 0);
+  
+      if (testDate.getTime() === entrada.getTime()) {
+        return true;
+      }
     }
   
-    if (this.modo === 'salida') {
-      return date <= today || (entrada ? date <= entrada : false);
-    }
-  
-    return false;
+    return !!min && testDate < min;
   }  
 }

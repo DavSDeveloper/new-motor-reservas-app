@@ -19,6 +19,7 @@
       class="btn right-btn"
       (click)="abrirSalida()"
       [class.active]="isActive && tipoActivo === 'salida'"
+      [disabled]="!fechaEntrada"
     >
       <span>
         Fecha de salida
