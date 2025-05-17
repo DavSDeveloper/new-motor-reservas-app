@@ -11,16 +11,31 @@
         <small>y niños a partir de 14 años</small>
       </div>
       <div class="counter">
-        <button (click)="decrementAdults(i)" [disabled]="room.adults === 1" [ngClass]="{ 'animate': counterAnimationKeys['adults-' + i] }">−</button>
+        <button
+          (click)="decrementAdults(i)"
+          [disabled]="room.adults === 1"
+          [ngClass]="{ animate: counterAnimationKeys['adults-' + i] }"
+        >
+          −
+        </button>
         <span>{{ room.adults }}</span>
-        <button (click)="incrementAdults(i)" [ngClass]="{ 'animate': counterAnimationKeys['adults-' + i] }">+</button>
+        <button
+          (click)="incrementAdults(i)"
+          [ngClass]="{ animate: counterAnimationKeys['adults-' + i] }"
+        >
+          +
+        </button>
       </div>
     </div>
 
     <div class="section">
       <div class="label"><strong>Niños</strong></div>
       <label class="switch">
-        <input type="checkbox" [(ngModel)]="room.hasChildren" (ngModelChange)="onChildrenToggle(i)">
+        <input
+          type="checkbox"
+          [(ngModel)]="room.hasChildren"
+          (ngModelChange)="onChildrenToggle(i)"
+        />
         <span class="slider"></span>
       </label>
     </div>
@@ -28,7 +43,9 @@
     <div *ngIf="room.hasChildren" class="section">
       <div class="label">0-13 años</div>
       <div class="counter">
-        <button (click)="decrementChildren(i)" [disabled]="room.children === 0">−</button>
+        <button (click)="decrementChildren(i)" [disabled]="room.children === 0">
+          −
+        </button>
         <span>{{ room.children }}</span>
         <button (click)="incrementChildren(i)">+</button>
       </div>
@@ -37,6 +54,8 @@
 
   <div class="actions">
     <button (click)="addRoom()">AGREGAR HABITACIÓN</button>
-    <button class="apply" (click)="apply()">APLICAR</button>
+    <button class="apply" [disabled]="!puedeAplicar" (click)="onAplicarClick()">
+      APLICAR
+    </button>
   </div>
 </div>

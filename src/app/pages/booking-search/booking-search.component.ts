@@ -6,6 +6,8 @@ import { RoomSelectorComponent } from '../../components/room-selector/room-selec
 import { CommonModule } from '@angular/common';
 import { CalendarContainerComponent } from '../../components/calendar-container/calendar-container.component';
 import { Room } from '../../models/room.model';
+import { ImageCarouselComponent } from '../../components/image-carousel/image-carousel.component';
+
 
 @Component({
   selector: 'app-booking-search',
@@ -17,6 +19,7 @@ import { Room } from '../../models/room.model';
     RoomSelectorComponent,
     CommonModule,
     CalendarContainerComponent,
+    ImageCarouselComponent
   ],
   templateUrl: './booking-search.component.html',
   styleUrl: './booking-search.component.css',
@@ -34,11 +37,12 @@ export class BookingSearchComponent {
 
   roomSelectorVisible = false;
   resumenHabitaciones = {
-    totalHabitaciones: 0,
-    totalAdultos: 0,
+    totalHabitaciones: 1,
+    totalAdultos: 1,
     totalNinos: 0,
   };
-  rooms: Room[] = [];
+  rooms: Room[] = [{ adults: 1, hasChildren: false, children: 0 }];
+  mostrarListaHabitaciones = true;
 
   @ViewChild('dateControls', { read: ElementRef }) dateControls!: ElementRef;
   @ViewChild('roomWrapper') roomWrapper!: ElementRef;
@@ -46,7 +50,7 @@ export class BookingSearchComponent {
   ngOnInit(): void {
     this.isCalendarVisible = true;
     this.tipoActivo = 'entrada';
-  }  
+  }
 
   mostrarCalendario(tipo: 'entrada' | 'salida') {
     this.isCalendarVisible =
@@ -63,17 +67,21 @@ export class BookingSearchComponent {
     }
   }
 
-  actualizarResumen(rooms: Room[]) {
-    this.resumenHabitaciones.totalHabitaciones = rooms.length;
-    this.resumenHabitaciones.totalAdultos = rooms.reduce(
-      (sum, r) => sum + r.adults,
-      0
-    );
-    this.resumenHabitaciones.totalNinos = rooms.reduce(
-      (sum, r) => sum + r.children,
-      0
-    );
+  actualizarResumen(rooms: Room[]): void {
     this.rooms = rooms;
+
+    const totalHabitaciones = rooms.length;
+    const totalAdultos = rooms.reduce((sum, r) => sum + r.adults, 0);
+    const totalNinos = rooms.reduce(
+      (sum, r) => sum + (r.hasChildren ? r.children : 0),
+      0
+    );
+
+    this.resumenHabitaciones = {
+      totalHabitaciones,
+      totalAdultos,
+      totalNinos,
+    };
   }
 
   onFechaSeleccionada(fecha: Date) {
@@ -86,26 +94,45 @@ export class BookingSearchComponent {
       this.isCalendarVisible = false;
       this.roomSelectorVisible = true;
     }
-  }  
+  }
 
   getMinDate(): Date | null {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-  
+
     if (this.tipoActivo === 'entrada') {
       const minEntrada = new Date(today);
       minEntrada.setDate(minEntrada.getDate() + 1);
       return minEntrada;
     }
-  
+
     if (this.tipoActivo === 'salida' && this.fechaEntrada) {
       const minSalida = new Date(this.fechaEntrada);
       minSalida.setDate(minSalida.getDate() + 1);
       return minSalida;
     }
-  
+
     return null;
-  }  
+  }
+
+  puedeAplicar(): boolean {
+    return (
+      this.fechaEntrada !== null &&
+      this.fechaSalida !== null &&
+      this.resumenHabitaciones.totalHabitaciones > 0
+    );
+  }
+
+  aplicarBusqueda() {
+    const datosReserva = {
+      fechaEntrada: this.fechaEntrada,
+      fechaSalida: this.fechaSalida,
+      habitaciones: this.rooms,
+      resumen: this.resumenHabitaciones,
+    };
+
+    console.log('Datos de reserva:', datosReserva);
+  }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {

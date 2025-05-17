@@ -36,8 +36,20 @@
           (habitacionesAplicadas)="actualizarResumen($event)"
           (habitacionesCambiadas)="actualizarResumen($event)"
           [rooms]="rooms"
+          [puedeAplicar]="puedeAplicar()"
+          (aplicar)="aplicarBusqueda()"
         ></app-room-selector>
       </div>
     </div>
   </div>
+</div>
+
+<div *ngIf="mostrarListaHabitaciones != true">
+  <app-image-carousel
+    [images]="['assets/foto1.jpg', 'assets/foto2.jpg', 'assets/foto3.jpg']"
+  ></app-image-carousel>
+</div>
+
+<div *ngIf="mostrarListaHabitaciones === true">
+  Hola Mundo
 </div>

@@ -18,10 +18,12 @@ interface Room {
 export class RoomSelectorComponent {
   @Output() habitacionesAplicadas = new EventEmitter<Room[]>();
   @Output() habitacionesCambiadas = new EventEmitter<Room[]>();
+  @Output() aplicar = new EventEmitter<void>();
 
   @Input() rooms: Room[] = [
     { adults: 0, hasChildren: false, children: 0 }
   ];
+  @Input() puedeAplicar: boolean = false;
 
   counterAnimationKeys: { [key: string]: boolean } = {};
 
@@ -71,7 +73,7 @@ export class RoomSelectorComponent {
     }, 300);
   }
 
-  apply() {
-    this.habitacionesAplicadas.emit(this.rooms);
+  onAplicarClick() {
+    this.aplicar.emit();
   }
 }
