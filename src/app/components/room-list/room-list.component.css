@@ -1,0 +1,19 @@
+.room-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0 4rem;
+  padding-bottom: 2rem;
+}
+
+@media (max-width: 1200px) {
+  .room-list {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .room-list {
+    padding: 0 1rem;
+  }
+}

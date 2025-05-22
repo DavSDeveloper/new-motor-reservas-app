@@ -7,7 +7,8 @@ import { CommonModule } from '@angular/common';
 import { CalendarContainerComponent } from '../../components/calendar-container/calendar-container.component';
 import { Room } from '../../models/room.model';
 import { ImageCarouselComponent } from '../../components/image-carousel/image-carousel.component';
-
+import { LoaderComponent } from '../../components/loader/loader.component';
+import { RoomListComponent } from '../../components/room-list/room-list.component';
 
 @Component({
   selector: 'app-booking-search',
@@ -19,7 +20,9 @@ import { ImageCarouselComponent } from '../../components/image-carousel/image-ca
     RoomSelectorComponent,
     CommonModule,
     CalendarContainerComponent,
-    ImageCarouselComponent
+    ImageCarouselComponent,
+    LoaderComponent,
+    RoomListComponent
   ],
   templateUrl: './booking-search.component.html',
   styleUrl: './booking-search.component.css',
@@ -42,7 +45,8 @@ export class BookingSearchComponent {
     totalNinos: 0,
   };
   rooms: Room[] = [{ adults: 1, hasChildren: false, children: 0 }];
-  mostrarListaHabitaciones = true;
+  mostrarListaHabitaciones = false;
+  isLoading = false;
 
   @ViewChild('dateControls', { read: ElementRef }) dateControls!: ElementRef;
   @ViewChild('roomWrapper') roomWrapper!: ElementRef;
@@ -131,7 +135,16 @@ export class BookingSearchComponent {
       resumen: this.resumenHabitaciones,
     };
 
-    console.log('Datos de reserva:', datosReserva);
+    if (datosReserva !== null) {
+      console.log('Datos de reserva:', datosReserva);
+      this.isCalendarVisible = false;
+      this.roomSelectorVisible = false;
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 2000);
+      this.mostrarListaHabitaciones = true;
+    }
   }
 
   @HostListener('document:click', ['$event'])

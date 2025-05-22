@@ -50,6 +50,12 @@
   ></app-image-carousel>
 </div>
 
+<app-loader *ngIf="isLoading"></app-loader>
+
 <div *ngIf="mostrarListaHabitaciones === true">
-  Hola Mundo
+  <div *ngIf="!isLoading">
+    <div *ngIf="mostrarListaHabitaciones === true">
+      <app-room-list></app-room-list>
+    </div>
+  </div>
 </div>

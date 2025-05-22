@@ -1,0 +1,52 @@
+<div class="room-card" [ngClass]="{ 'sin-borde-abajo': ofertaActiva === true }">
+  <img [src]="room.imagen" alt="Imagen habitación" class="room-img" />
+
+  <div class="room-info">
+    <h3 class="room-title">{{ room.nombre }}</h3>
+    <ul class="details">
+      <li><mat-icon>crop_square</mat-icon> {{ room.metros }} m²</li>
+      <li><mat-icon>bed</mat-icon> {{ room.camas }}</li>
+      <li><mat-icon>visibility</mat-icon> {{ room.vista }}</li>
+      <li><mat-icon>wifi</mat-icon> {{ room.servicios.join(", ") }}</li>
+    </ul>
+    <a class="ver-mas">Ver más</a>
+  </div>
+
+  <div class="room-precio">
+    <p *ngIf="room.precioOriginal" class="precio-original">
+      desde <del>${{ room.precioOriginal | number : "1.0-0" }}</del>
+    </p>
+    <p class="precio-final">$ {{ room.precioFinal | number : "1.2-2" }}</p>
+
+    <button class="btn-oferta" [class.active]="isActive" (click)="toggleOferta()">
+      SELECCIONE OFERTA
+      <mat-icon>{{ ofertaActiva ? "expand_less" : "expand_more" }}</mat-icon>
+    </button>
+    <p class="precio-nota">Excluye impuestos y cargos</p>
+  </div>
+</div>
+
+<div *ngIf="ofertaActiva" class="ofertas-container">
+  <div class="oferta" *ngFor="let tarifa of room.ofertas">
+    <div class="oferta-info">
+      <h4 class="oferta-titulo">{{ tarifa.nombre }}</h4>
+      <ul class="oferta-detalles">
+        <li><mat-icon>gpp_maybe</mat-icon> {{ tarifa.condiciones }}</li>
+        <li><mat-icon>credit_card</mat-icon> {{ tarifa.pago }}</li>
+        <li>
+          <mat-icon>restaurant</mat-icon> <strong>{{ tarifa.comida }}</strong>
+        </li>
+      </ul>
+      <a class="ver-mas">Ver más</a>
+    </div>
+    <div class="oferta-precio">
+      <p *ngIf="tarifa.precioOriginal" class="precio-original">
+        <del>${{ tarifa.precioOriginal | number : "1.0-0" }}</del>
+      </p>
+      <p class="precio-final">${{ tarifa.precio | number : "1.2-2" }}</p>
+      <p *ngIf="tarifa.destacado" class="destacado">El precio más bajo</p>
+      <button class="btn-reservar">RESERVA AHORA</button>
+      <p class="precio-nota">Excluye impuestos y cargos</p>
+    </div>
+  </div>
+</div>
