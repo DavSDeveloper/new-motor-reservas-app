@@ -9,6 +9,9 @@ import { Room } from '../../models/room.model';
 import { ImageCarouselComponent } from '../../components/image-carousel/image-carousel.component';
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { RoomListComponent } from '../../components/room-list/room-list.component';
+import { RoomDetailComponent } from '../../components/room-detail/room-detail.component';
+import { FooterComponent } from "../../components/footer/footer.component";
+import { BookingDetailsBarComponent } from '../../components/booking-details-bar/booking-details-bar.component';
 
 @Component({
   selector: 'app-booking-search',
@@ -22,7 +25,10 @@ import { RoomListComponent } from '../../components/room-list/room-list.componen
     CalendarContainerComponent,
     ImageCarouselComponent,
     LoaderComponent,
-    RoomListComponent
+    RoomListComponent,
+    RoomDetailComponent,
+    FooterComponent,
+    BookingDetailsBarComponent
   ],
   templateUrl: './booking-search.component.html',
   styleUrl: './booking-search.component.css',

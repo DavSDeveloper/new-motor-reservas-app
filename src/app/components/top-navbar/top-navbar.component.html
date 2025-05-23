@@ -2,8 +2,14 @@
   <div class="top-navbar-content">
     <img src="assets/logo.png" alt="Logo Hotel Z3" class="logo-img" />
 
-    <div class="top-navbar-options">
+    <div class="top-navbar-options" (click)="promoCodeModalOpen = true">
       <span class="option">Código promocional</span>
     </div>
   </div>
 </div>
+
+<app-promo-code-modal
+  [isVisible]="promoCodeModalOpen"
+  (onClose)="promoCodeModalOpen = false"
+  (onApply)="onPromoCodeApplied($event)"
+></app-promo-code-modal>

@@ -1,0 +1,59 @@
+<div class="modal-overlay" *ngIf="isVisible" (click)="close()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2 class="modal-title">Habitación Doble Estándar - 2 Camas</h2>
+      <button class="close-button" aria-label="Cerrar" (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <img src="assets/foto1.jpg" alt="Habitación doble" class="main-image" />
+
+    <div class="modal-body">
+      <div class="room-details">
+        <ul class="basic-info">
+          <li><mat-icon class="icon">square_foot</mat-icon> 18 m²</li>
+          <li><mat-icon class="icon">bed</mat-icon> 2x Cama Doble</li>
+          <li>
+            <mat-icon class="icon">landscape</mat-icon> Vista al patio interior
+          </li>
+          <li>
+            <mat-icon class="icon">check_circle</mat-icon> Wi-Fi, Aire
+            acondicionado, Televisión
+          </li>
+        </ul>
+
+        <p class="description">
+          Diseñada para brindar una experiencia de alojamiento excepcional
+          durante una estancia corta. La habitación cuenta con dos camas, con
+          cobijas suaves y almohadas cómodas que garantizan un descanso
+          reparador para todos los huéspedes.
+        </p>
+      </div>
+
+      <div class="facilities">
+        <h3>Instalaciones</h3>
+        <ul class="grid">
+          <li>Aire acondicionado</li>
+          <li>Escritorio</li>
+          <li>Toallas</li>
+          <li>WiFi</li>
+          <li>TV Satelital</li>
+          <li>TV</li>
+          <li>Armario</li>
+          <li>Baño con ducha</li>
+          <li>Artículos de aseo</li>
+          <li>Smart TV</li>
+          <li>Teléfono</li>
+        </ul>
+      </div>
+
+      <div class="price-box">
+        <p class="old-price">desde <span class="strike">$ 3.260.000</span></p>
+        <p class="price">$ 2.856.000</p>
+        <button class="select-offer">SELECCIONE OFERTA</button>
+        <small class="tax-note">Excluye impuestos y cargos</small>
+      </div>
+    </div>
+  </div>
+</div>

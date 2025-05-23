@@ -10,7 +10,6 @@
   margin: 0 auto;
   background-color: #fff;
   animation: fadeSlideIn 0.2s ease-out;
-  transition: all 0.3s ease-in-out;
 }
 
 .sin-borde-abajo {
@@ -63,12 +62,18 @@
 }
 
 .ver-mas {
-  color: #007bff;
+  color: #1565c0;
   width: fit-content;
   font-size: 0.9rem;
+  font-weight: 500;
   margin-top: 0.5rem;
   cursor: pointer;
   text-decoration: none;
+}
+
+.ver-mas:hover {
+  transition: all 0.3s ease-in-out;
+  color: #0d47a1;
 }
 
 .room-precio {
@@ -257,17 +262,6 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes fadeSlideOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-10px);
   }
 }
 

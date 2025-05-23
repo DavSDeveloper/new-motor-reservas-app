@@ -35,7 +35,6 @@
 
 .room-header button {
   border: none;
-  border-radius: 50%;
   background: transparent;
   font-size: 18px;
   cursor: pointer;
@@ -103,15 +102,15 @@
   border: none;
   font-size: 20px;
   font-weight: 800;
-  background-color: #f4c430;
-  color: #1a1a1a;
+  background-color: #494949;
+  color: #fff;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .counter button:hover {
-  background-color: #494949;
-  color: #fff;
+  background-color: #f4c430;
+  color: #1a1a1a;
 }
 
 .counter button:disabled {
@@ -130,7 +129,6 @@
   transform: scale(0.95);
 }
 
-/* Switch moderno */
 .switch {
   position: relative;
   display: inline-block;
@@ -176,7 +174,6 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
-/* Botones de acción */
 .actions {
   display: flex;
   justify-content: space-between;
@@ -211,14 +208,14 @@ input:checked + .slider:before {
 }
 
 .actions button.apply {
-  background-color: #f4c430;
-  color: #1a1a1a;
+  background-color: #494949;
+  color: #fff;
   transition: background-color 0.3s ease;
 }
 
 .actions button.apply:hover {
-  background-color: #494949;
-  color: #fff;
+  background-color: #f4c430;
+  color: #1a1a1a;
 }
 
 .actions button.apply:disabled {
@@ -249,17 +246,6 @@ input:checked + .slider:before {
   }
 }
 
-@keyframes fadeSlideOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -268,21 +254,6 @@ input:checked + .slider:before {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes fadeOutDown {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-    height: auto;
-  }
-  to {
-    opacity: 0;
-    transform: translateY(10px);
-    height: 0;
-    margin: 0;
-    padding: 0;
   }
 }
 

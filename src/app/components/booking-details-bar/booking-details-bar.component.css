@@ -1,0 +1,96 @@
+.booking-details-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 2px solid #444;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: sans-serif;
+  z-index: 1000;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.price-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-info .label {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.price-info .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.actions {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.next-button {
+  background: #494949;
+  border: none;
+  padding: 12px 24px;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.next-button:hover {
+  background-color: #f4c430;
+  color: #1a1a1a;
+}
+
+.next-button:disabled {
+  background: #cccccc;
+  color: #1a1a1a;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.next-button.active {
+  transform: scale(0.97);
+}
+
+.selection-info {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .booking-details-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .actions {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .next-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .selection-info {
+    text-align: left;
+    width: 100%;
+  }
+}

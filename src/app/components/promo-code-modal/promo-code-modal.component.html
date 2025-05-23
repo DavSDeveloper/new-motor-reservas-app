@@ -1,0 +1,14 @@
+<div class="modal-overlay" *ngIf="isVisible" (click)="close()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="close()">&times;</button>
+    <h2>Ingresa tu código promocional</h2>
+    <input
+      type="text"
+      [(ngModel)]="promoCode"
+      placeholder="Ej. DESCUENTO25"
+      class="promo-input"
+    />
+    <button class="apply-btn" (click)="applyCode()">APLICAR</button>
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
+</div>

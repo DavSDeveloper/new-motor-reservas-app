@@ -132,18 +132,6 @@
   }
 }
 
-@keyframes fadeSlideOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-}
-
-/* Responsive */
 @media (max-width: 1024px) {
   .calendar-wrapper {
     padding: 20px;

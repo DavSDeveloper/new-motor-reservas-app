@@ -9,7 +9,7 @@
       <li><mat-icon>visibility</mat-icon> {{ room.vista }}</li>
       <li><mat-icon>wifi</mat-icon> {{ room.servicios.join(", ") }}</li>
     </ul>
-    <a class="ver-mas">Ver más</a>
+    <a class="ver-mas" (click)="roomDetailVisible = true">Ver más</a>
   </div>
 
   <div class="room-precio">
@@ -50,3 +50,8 @@
     </div>
   </div>
 </div>
+
+<app-room-detail
+  [isVisible]="roomDetailVisible"
+  (onClose)="roomDetailVisible = false"
+></app-room-detail>
