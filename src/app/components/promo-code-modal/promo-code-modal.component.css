@@ -18,10 +18,9 @@
 }
 
 .modal-content {
-  background: #262626;
+  background: #fff;
   padding: 2rem;
   border-radius: 16px;
-  border: 2px solid #f5c431;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   position: relative;
   width: 100%;
@@ -34,7 +33,7 @@ h2 {
   margin-top: 2rem;
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
-  color: #f5c431;
+  color: #1a1a1a;
 }
 
 .promo-input {
@@ -81,7 +80,12 @@ h2 {
   background: transparent;
   cursor: pointer;
   line-height: 1;
-  color: #f5c431;
+  color: #454545;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #1a1a1a;
 }
 
 .error {

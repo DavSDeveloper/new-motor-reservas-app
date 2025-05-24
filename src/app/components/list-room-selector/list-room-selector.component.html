@@ -1,0 +1,27 @@
+<div class="modal-overlay" *ngIf="isVisible" (click)="close()">
+  <div class="contenedor">
+    <h3>Elija: Habitación Doble Económica</h3>
+    <div
+      class="opcion"
+      *ngFor="let opcion of opciones"
+      [class.seleccionada]="opcion.seleccionado"
+      (click)="seleccionar(opcion.id)"
+    >
+      <div class="checkbox" [class.checked]="opcion.seleccionado"></div>
+      <div class="info">
+        <span class="descripcion">{{ opcion.descripcion }}</span>
+        <span class="precio">${{ opcion.precio | number : "1.2-2" }}</span>
+        <span class="nota">Excluye impuestos y cargos</span>
+      </div>
+    </div>
+
+    <p class="contador">
+      Número de habitaciones elegidas <strong>{{ totalSeleccionadas }}</strong>
+    </p>
+
+    <div class="acciones">
+      <button class="cerrar">CERRAR</button>
+      <button class="aplicar">APLICAR</button>
+    </div>
+  </div>
+</div>

@@ -1,56 +1,50 @@
 <div class="modal-overlay" *ngIf="isVisible" (click)="close()">
   <div class="modal" (click)="$event.stopPropagation()">
     <div class="modal-header">
-      <h2 class="modal-title">Habitación Doble Estándar - 2 Camas</h2>
+      <h2 class="modal-title">{{ room.nombre }}</h2>
       <button class="close-button" aria-label="Cerrar" (click)="close()">
         <mat-icon>close</mat-icon>
       </button>
     </div>
 
-    <img src="assets/foto1.jpg" alt="Habitación doble" class="main-image" />
+    <img [src]="room.imagen" alt="Habitación doble" class="main-image" />
 
     <div class="modal-body">
       <div class="room-details">
         <ul class="basic-info">
-          <li><mat-icon class="icon">square_foot</mat-icon> 18 m²</li>
-          <li><mat-icon class="icon">bed</mat-icon> 2x Cama Doble</li>
           <li>
-            <mat-icon class="icon">landscape</mat-icon> Vista al patio interior
+            <mat-icon class="icon">square_foot</mat-icon> {{ room.metros }} m²
           </li>
+          <li><mat-icon class="icon">bed</mat-icon> {{ room.camas }}</li>
+          <li><mat-icon class="icon">landscape</mat-icon> {{ room.vista }}</li>
           <li>
-            <mat-icon class="icon">check_circle</mat-icon> Wi-Fi, Aire
-            acondicionado, Televisión
+            <mat-icon class="icon">check_circle</mat-icon>
+            {{ room.servicios.join(", ") }}
           </li>
         </ul>
 
         <p class="description">
-          Diseñada para brindar una experiencia de alojamiento excepcional
-          durante una estancia corta. La habitación cuenta con dos camas, con
-          cobijas suaves y almohadas cómodas que garantizan un descanso
-          reparador para todos los huéspedes.
+          {{ room.descripcion }}
         </p>
       </div>
 
       <div class="facilities">
         <h3>Instalaciones</h3>
         <ul class="grid">
-          <li>Aire acondicionado</li>
-          <li>Escritorio</li>
-          <li>Toallas</li>
-          <li>WiFi</li>
-          <li>TV Satelital</li>
-          <li>TV</li>
-          <li>Armario</li>
-          <li>Baño con ducha</li>
-          <li>Artículos de aseo</li>
-          <li>Smart TV</li>
-          <li>Teléfono</li>
+          <li *ngFor="let facility of room.instalaciones">
+            {{ facility }}
+          </li>
         </ul>
       </div>
 
       <div class="price-box">
-        <p class="old-price">desde <span class="strike">$ 3.260.000</span></p>
-        <p class="price">$ 2.856.000</p>
+        <p class="old-price">
+          desde
+          <span class="strike"
+            >${{ room.precioOriginal | number : "1.0-0" }}</span
+          >
+        </p>
+        <p class="price">${{ room.precioFinal | number : "1.2-2" }}</p>
         <button class="select-offer">SELECCIONE OFERTA</button>
         <small class="tax-note">Excluye impuestos y cargos</small>
       </div>

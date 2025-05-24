@@ -3,7 +3,7 @@
   background: #fff;
   border-radius: 16px;
   padding: 24px;
-  max-width: 100%; 
+  max-width: 100%;
   width: 685px;
   transition: all 0.3s ease;
   box-shadow: 14px 14px 20px 0 rgba(20, 20, 20, 0.3);
@@ -52,7 +52,7 @@
 }
 
 .calendar-month {
-  width: 48%; 
+  width: 48%;
   margin-bottom: 16px;
   display: inline-block;
 }
@@ -144,12 +144,12 @@
   }
 
   .calendar-month {
-    width: 100%; 
-    margin-bottom: 0; 
+    width: 100%;
+    margin-bottom: 0;
   }
 
   .calendar-month.second-month {
-    display: none; 
+    display: none;
   }
 
   .month-year {
@@ -164,13 +164,17 @@
     padding: 16px;
     width: 350px;
   }
+
+  .month-label:last-child {
+    display: none;
+  }
 }
 
 @media (max-width: 440px) {
   .calendar-wrapper {
     padding: 16px;
-    width: 100%; 
-    max-width: 360px; 
+    width: 100%;
+    max-width: 360px;
   }
 
   .calendar-body {
@@ -178,26 +182,22 @@
   }
 
   .calendar-month {
-    width: 100%; 
+    width: 100%;
   }
 
   .calendar-month.second-month {
-    display: none; 
+    display: none;
   }
 
   .month-year {
     flex-direction: column;
     gap: 12px;
   }
-
-  .month-label:last-child {
-    display: none;
-  }
 }
 
 @media (max-width: 320px) {
   .calendar-wrapper {
     padding: 16px;
-    width: 75%; 
+    width: 75%;
   }
 }

@@ -5,10 +5,10 @@
   right: 0;
   background: white;
   border-top: 2px solid #444;
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
-  padding: 40px 20px;
+  padding: 20px;
   font-family: sans-serif;
   z-index: 1000;
   flex-wrap: wrap;
@@ -77,6 +77,10 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 12px;
+  }
+
+  .price-info {
+    margin-bottom: 8px;
   }
 
   .actions {

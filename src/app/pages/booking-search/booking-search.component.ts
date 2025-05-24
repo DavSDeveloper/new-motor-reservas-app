@@ -12,6 +12,7 @@ import { RoomListComponent } from '../../components/room-list/room-list.componen
 import { RoomDetailComponent } from '../../components/room-detail/room-detail.component';
 import { FooterComponent } from "../../components/footer/footer.component";
 import { BookingDetailsBarComponent } from '../../components/booking-details-bar/booking-details-bar.component';
+import { ListRoomSelectorComponent } from "../../components/list-room-selector/list-room-selector.component";
 
 @Component({
   selector: 'app-booking-search',
@@ -28,8 +29,9 @@ import { BookingDetailsBarComponent } from '../../components/booking-details-bar
     RoomListComponent,
     RoomDetailComponent,
     FooterComponent,
-    BookingDetailsBarComponent
-  ],
+    BookingDetailsBarComponent,
+    ListRoomSelectorComponent
+],
   templateUrl: './booking-search.component.html',
   styleUrl: './booking-search.component.css',
 })

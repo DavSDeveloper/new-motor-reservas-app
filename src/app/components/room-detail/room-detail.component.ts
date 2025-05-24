@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './room-detail.component.css',
 })
 export class RoomDetailComponent {
+  @Input() room: any;
   @Input() isVisible: boolean = false;
   @Output() onClose = new EventEmitter<void>();
 
